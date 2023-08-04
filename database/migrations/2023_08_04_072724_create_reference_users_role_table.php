@@ -17,13 +17,11 @@ return new class extends Migration
         Schema::create('reference_users_role', function (Blueprint $table) {
             $table->id();
             $table->string('keterangan');
-            $table->timestamps();
         });
 
         DB::table('reference_users_role')->insert([
-            ['name' => 'Developer', 'public' => true],
-            ['name' => 'Journalist', 'public' => true],
-            ['name' => 'Admin', 'public' => false],
+            ['keterangan' => 'admin'],
+            ['keterangan' => 'user'],
         ]);
     }
 
