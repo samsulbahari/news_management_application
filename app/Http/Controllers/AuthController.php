@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
 use App\Repositories\User\UserRepositoryInterface;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redis;
 
 class AuthController extends Controller
 {
@@ -17,6 +20,7 @@ class AuthController extends Controller
         $this->userRepository = $userRepository;
     }
     public function login(LoginRequest $request){
+        
         $validated = $request->validated();
     
         $user =  $this->userRepository->getUserByEmail($request->email);

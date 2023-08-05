@@ -6,6 +6,7 @@ use App\Http\Requests\NewsRequest;
 use App\Http\Resources\NewsResouce;
 use Illuminate\Http\Request;
 use App\Repositories\News\NewsRepositoryInterface;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
@@ -79,18 +80,21 @@ class NewsController extends Controller
 
     public function getid(){
         $id = request()->query('id');
-        $news =  $this->newsRepository->getById($id);
-        if($news){
-            return new NewsResouce($news);
-            return response()->json([
-                'status' => true,
-                'message' => 'succes delete data'
-            ]);
+        $data = Redis::get('news_'.$id);
+        if($data){
+            //if news id available on redis
+            return json_decode($data);
         }else{
-            return response()->json([
-                'status' => false,
-                'message' => 'id not found '
-            ],500);
+            $news =  $this->newsRepository->getById($id);
+            if($news){
+                return new NewsResouce($news);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'id not found '
+                ],500);
+            }
         }
+      
     }
 }

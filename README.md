@@ -24,3 +24,6 @@ To deploy this project run
 ##### password : User@123
 ##### role : user
 
+### Documentation
+Dokumentasion postman in folder postman
+
