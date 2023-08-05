@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\ResponseResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\User\UserRepositoryInterface;
@@ -28,14 +29,20 @@ class AuthController extends Controller
             if(Hash::check($request->password, $user->password)){ 
                 //password valid
                 $user['token'] =   $user->createToken('loginweb')->accessToken;
-                return new UserResource(true,'login success', $user);
+                return new UserResource(true,'success login',$user);
             }else{
                 //wrong password
-                return new UserResource(false,'email or password wrong', null);
+                return response()->json([
+                    'status' => false,
+                    'message' => 'wrong username and password'
+                ],404);
             }
         }else{
             //wrong email
-            return new UserResource(false,'email or password wrong', null);
+            return response()->json([
+                'status' => false,
+                'message' => 'wrong username and password'
+            ],404);
         }
        
     }

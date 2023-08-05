@@ -9,11 +9,11 @@ class UserResource extends JsonResource
     public $status;
     public $message;
     
-    public function __construct($status, $message, $resource)
+    public function __construct($status,$message,$resource)
     {
         parent::__construct($resource);
         $this->status  = $status;
-        $this->message = $message;
+        $this->message  = $message;
     }
     /**
      * Transform the resource into an array.
@@ -23,10 +23,22 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
+            
+            'id'   => $this->id,
+            'email' => $this->email,
+            'role' => $this->user,
+            'token' => $this->token
+        ];
+    }
+    public function with($request)
+    {
+        return [
+            
             'success'   => $this->status,
-            'message'   => $this->message,
-            'data'      => $this->resource
+            'message' => $this->message
+     
         ];
     }
 }
