@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "paragonie/random_compat": "2.*",
+        "predis/predis": "^2.2",
         "spatie/laravel-permission": "^5.10",
         "yaza/laravel-repository-service": "^3.2"
     },
