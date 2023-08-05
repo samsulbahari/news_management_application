@@ -4,8 +4,9 @@
 To deploy this project run
 
 ```bash
-  php artisan migrate
+  php artisan migrate:fresh --seed --seeder=PermissionDemoSeeder
   php artisan passport:install
+  php artisan storage:link
 ```
 
 

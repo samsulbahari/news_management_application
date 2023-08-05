@@ -26,18 +26,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('users')->insert([
-            ['name' => 'admin',
-             'email' => 'admin@web.com',
-             'password' => Hash::make('Admin@123'),
-             'role' => 1,
-            ],
-            ['name' => 'user',
-             'email' => 'user@web.com',
-             'password' => Hash::make('User@123'),
-             'role' => 2,
-            ]
-        ]);
+     
     }
 
     /**
