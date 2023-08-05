@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NewsCommentController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/news_update', [NewsController::class, 'update'])->middleware('role:super-admin');
     Route::delete('/news', [NewsController::class, 'delete'])->middleware('role:super-admin');
     Route::get('/news_byid', [NewsController::class, 'getid'])->middleware('role:super-admin|user');
+    Route::post('/news_comment', [NewsCommentController::class, 'create'])->middleware('role:super-admin|user');
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

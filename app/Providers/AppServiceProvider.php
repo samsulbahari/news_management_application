@@ -7,6 +7,8 @@ use App\Repositories\News\NewsRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Repositories\User\UserRepository;
+use App\Repositories\NewsComment\NewsCommentRepositoryInterface;
+use App\Repositories\NewsComment\NewsCommentRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +28,12 @@ class AppServiceProvider extends ServiceProvider
           
             NewsRepositoryInterface::class,
             NewsRepository::class
+        );
+        
+        $this->app->bind(
+          
+            NewsCommentRepositoryInterface::class,
+            NewsCommentRepository::class
         );
     }
 
